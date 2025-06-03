@@ -1,11 +1,21 @@
-from flask import Flask
-import os
+import logging
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
-app = Flask(__name__)
+# توکن ربات
+TOKEN = "7917361837:AAFdjJ1l_VSTx-i1Oudolav2-pp0h079TLM"
 
-@app.route('/')
-def home():
-    return 'GodTier Bot is running!'
+def start(update, context):
+    update.message.reply_text("ربات God-Tier با موفقیت اجرا شد ✅")
+
+def main():
+    updater = Updater(TOKEN, use_context=True)
+    dp = updater.dispatcher
+
+    dp.add_handler(CommandHandler("start", start))
+    dp.add_handler(MessageHandler(Filters.text & ~Filters.command, start))
+
+    updater.start_polling()
+    updater.idle()
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
+    main()
