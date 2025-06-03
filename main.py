@@ -4,8 +4,8 @@ from datetime import datetime
 from telegram import Bot
 
 TELEGRAM_TOKEN = "7917361837:AAFdjJ1l_VSTx-i1Oudolav2-pp0h079TLM"
-CHANNEL_ID = "@BkeqKTzy3KlkYjk8"
-USER_ID = 6400459110  # آی‌دی شخصی شما
+CHANNEL_ID = "https://t.me/+BkeqKTzy3KlkYjk8"
+USER_ID = 96070970  # آی‌دی شخصی شما
 
 bot = Bot(token=TELEGRAM_TOKEN)
 
