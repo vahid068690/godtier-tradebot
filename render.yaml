@@ -9,6 +9,6 @@ services:
       - key: BOT_TOKEN
         value: 7917361837:AAFdjJ1l_VSTx-i1Oudolav2-pp0h079TLM
       - key: CHAT_ID
-        value: 5977087755
+        value: 96070970
       - key: CHANNEL_ID
-        value: -1002039603240
+        value: -1002479614516
