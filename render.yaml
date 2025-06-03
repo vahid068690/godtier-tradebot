@@ -11,4 +11,4 @@ services:
       - key: CHAT_ID
         value: 96070970
       - key: CHANNEL_ID
-        value: -1002479614516
+        value: -1002098489700
