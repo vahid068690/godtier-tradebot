@@ -1,21 +1,29 @@
-import logging
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import requests
+import time
+from datetime import datetime
+from telegram import Bot
 
-# توکن ربات
-TOKEN = "7917361837:AAFdjJ1l_VSTx-i1Oudolav2-pp0h079TLM"
+TELEGRAM_TOKEN = "7917361837:AAFdjJ1l_VSTx-i1Oudolav2-pp0h079TLM"
+CHANNEL_ID = "@BkeqKTzy3KlkYjk8"
+USER_ID = 6400459110  # آی‌دی شخصی شما
 
-def start(update, context):
-    update.message.reply_text("ربات God-Tier با موفقیت اجرا شد ✅")
+bot = Bot(token=TELEGRAM_TOKEN)
 
-def main():
-    updater = Updater(TOKEN, use_context=True)
-    dp = updater.dispatcher
+def get_price(symbol="BTCUSDT"):
+    url = f"https://api.binance.com/api/v3/ticker/price?symbol={symbol}"
+    return float(requests.get(url).json()["price"])
 
-    dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(MessageHandler(Filters.text & ~Filters.command, start))
+def send_signal(message):
+    bot.send_message(chat_id=CHANNEL_ID, text=message)
+    bot.send_message(chat_id=USER_ID, text=message)
 
-    updater.start_polling()
-    updater.idle()
+def main_loop():
+    while True:
+        price = get_price()
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        msg = f"📈 سیگنال تست\n🕒 {now}\n💰 BTC/USDT: {price:.2f}\n📡 وضعیت: پایلوت فعال"
+        send_signal(msg)
+        time.sleep(300)  # هر ۵ دقیقه یک بار
 
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    main_loop()
