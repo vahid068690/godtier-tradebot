@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: godtier-tradebot
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: python main.py
+    envVars:
+      - key: BOT_TOKEN
+        value: 7917361837:AAFdjJ1l_VSTx-i1Oudolav2-pp0h079TLM
+      - key: CHAT_ID
+        value: 5977087755
+      - key: CHANNEL_ID
+        value: -1002039603240
